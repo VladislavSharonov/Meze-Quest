@@ -18,6 +18,12 @@ public class Player : MonoBehaviour
     private CharacterController _characterController;
     private const short MaxLives = 100;
 
+    public bool IsKeyTook
+    {
+        get;
+        set;
+    }
+    
     public int AddLives(short lives)
     {
         LivesCount += lives;
@@ -70,8 +76,8 @@ public class Player : MonoBehaviour
     private void CharacterMove()
     {
         var moveVector = Vector3.zero;
-        moveVector.z = Input.GetAxis("Horizontal");
-        moveVector.x = -Input.GetAxis("Vertical");
+        moveVector.x = -Input.GetAxis("Horizontal");
+        moveVector.z = -Input.GetAxis("Vertical");
         moveVector.Normalize();
         if (IsDifferentDirection(_moveDirection.x, moveVector.x))
             _moveDirection.x = 0f;
@@ -82,7 +88,7 @@ public class Player : MonoBehaviour
         {
             _moveDirection = Vector3.Lerp(_moveDirection,
                                           moveVector,
-                                          Time.deltaTime * acceleration);
+                                          Time.deltaTime * Time.deltaTime * acceleration);
         }
         else
             _moveDirection = Vector3.Lerp(_moveDirection, Vector3.zero, Time.deltaTime * deceleration);

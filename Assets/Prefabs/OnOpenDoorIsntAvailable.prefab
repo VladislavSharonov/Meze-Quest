@@ -14,8 +14,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!4 &2026793825829679227
 Transform:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2026793826841985744
 RectTransform:
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have no key to open the door
+  m_text: "\u041D\u0443\u0436\u0435\u043D \u043A\u043B\u044E\u0447"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: be988f80bc4bda24db01ed991298530a, type: 2}
   m_sharedMaterial: {fileID: -7463212550597393452, guid: be988f80bc4bda24db01ed991298530a, type: 2}
@@ -182,7 +182,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2026793827469485675
 RectTransform:

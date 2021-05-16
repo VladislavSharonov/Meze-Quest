@@ -9,12 +9,9 @@ public class DoorOpenZone : MonoBehaviour
 {
     [SerializeField] private GameObject openHint = null;
     [SerializeField] private GameObject openIsNotAvailableHint = null;
-    [SerializeField][FormerlySerializedAs("Key-Door System")] private KeyDoorSystem logic = null;
-    
+    [SerializeField] private GameObject door;
     private void Start()
     {
-        if (logic is null)
-            Debug.LogException(new Exception("GlobalLogic isn't set"));
         if (openHint is null)
             Debug.LogException(new Exception("Open hint wasn't set"));
         if (openIsNotAvailableHint is null)
@@ -26,13 +23,12 @@ public class DoorOpenZone : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"));
+        if (other.TryGetComponent(out Player player));
         {
-            if (logic.IsKeyTook)
+            if (player.IsKeyTook)
                 openHint.SetActive(true);
             else
                 openIsNotAvailableHint.SetActive(true);
-            Debug.Log("Enter the trigger");
         }   
     }
 
@@ -45,11 +41,10 @@ public class DoorOpenZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        if (!logic.IsKeyTook || !Input.GetKeyDown(KeyCode.E)) return;
+        if (!other.TryGetComponent(out Player player)) return;
+        if (!player.IsKeyTook || !Input.GetKeyDown(KeyCode.E)) return;
         openHint.SetActive(false);
-        logic.OpenDoor();
-        gameObject.SetActive(false);
-        Debug.Log("Stay the trigger");
+        Destroy(gameObject);
+        Destroy(door);
     }
 }

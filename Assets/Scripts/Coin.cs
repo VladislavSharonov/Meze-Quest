@@ -28,6 +28,6 @@ public class Coin : MonoBehaviour
             //audioSource.PlayOneShot(audioClip);
             
         CoinsSystem.AddCoin(denomination);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
