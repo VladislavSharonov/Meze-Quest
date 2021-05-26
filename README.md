@@ -3,19 +3,23 @@
 ## **Team:** DemoDreams (AT-01)
 **Teamleed, programmer:**
 
-> **Sharonov Vladislav Alekseevich** *(Шаронов Владислав Алексеевич)*
+Sharonov Vladislav Alekseevich *(Шаронов Владислав Алексеевич)*
 
 **Programmer:**
-> **Andriyanov Nikita Dmitrievich** *(Андриянов Никита Дмитриевич)*
+
+Andriyanov Nikita Dmitrievich *(Андриянов Никита Дмитриевич)*
 
 **UI/UX-Designer:**
-> **Bobrov Kirill Mikhailovich** *(Бобров Кирилл Михайлович)* 
+
+Bobrov Kirill Mikhailovich *(Бобров Кирилл Михайлович)* 
 
 **Artist**
-> **Dodonova Elena Igorevna** *(Додонова Елена Игоревна)* 
+
+Dodonova Elena Igorevna *(Додонова Елена Игоревна)* 
 
 **GameDesigner:**
-> **Dyachenko Maxim Alexandrovich** *(Дьяченко Максим Александрович)* 
+
+Dyachenko Maxim Alexandrovich *(Дьяченко Максим Александрович)* 
 ___
 ### **System format:**  Desktop application
 
