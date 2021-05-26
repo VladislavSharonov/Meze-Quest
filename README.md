@@ -21,7 +21,8 @@ Dodonova Elena Igorevna *(Додонова Елена Игоревна)*
 
 Dyachenko Maxim Alexandrovich *(Дьяченко Максим Александрович)* 
 ___
-### **System format:**  Desktop application
+### **System format:**
+Desktop application
 
 ### **Objective of the project:**
 Help the player improve memory.
