@@ -8,47 +8,39 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] [Range(1, 5)] private short defaultLivesCount = 3;
+    [SerializeField] private Lives lives;
     [SerializeField] private float speed = 3;
     [SerializeField] private float acceleration = 0.2f;
     [SerializeField] private float deceleration = 5f;
     [SerializeField] private new Camera camera;
+    [SerializeField] private GameObject loseWindow;
     
+    private Vector3 _statrtPosition;
     private Vector3 _moveDirection;
     private CharacterController _characterController;
-    private const short MaxLives = 100;
 
     public bool IsKeyTook
     {
         get;
         set;
     }
-    
-    public int AddLives(short lives)
-    {
-        LivesCount += lives;
-        if (LivesCount <= MaxLives) return 0;
-        LivesCount %= 100;
-        return LivesCount % 100;
-    }
 
-    public static short LivesCount
-    {
-        get;
-        private set;
-    }
-    
     public void TakeDamage()
     {
-        LivesCount--;
-        if (LivesCount <= 0 || Checkpoint.Current is null)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        lives.LivesCount = (short) (lives.LivesCount - 1);
+        if (lives.LivesCount <= 0 /*|| Checkpoint.Current is null*/)
+        {
+            Time.timeScale = 0f;
+            lives.Reset();
+            loseWindow.SetActive(true);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        }
         else
         {
-            var position = Checkpoint.Current.Value;
+            //var position = Checkpoint.Current.Value;
             var oldGameObject = gameObject;
             Instantiate(gameObject, 
-                        new Vector3(position.x, position.y, position.z), 
+                        new Vector3(_statrtPosition.x, _statrtPosition.y, _statrtPosition.z), 
                         transform.rotation);
             gameObject.name = oldGameObject.name;
             Destroy(oldGameObject);
@@ -57,19 +49,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _statrtPosition = gameObject.transform.position;
         _characterController = GetComponent<CharacterController>();
         if (_characterController is null)
             Debug.LogException(new Exception("GameObject has no CharacterController"));
         if (camera is null)
             Debug.LogWarning(new Exception("Camera is not set"));
         camera?.transform.LookAt(_characterController.transform.position);
-        
-        if (LivesCount <= 0)
-            LivesCount = defaultLivesCount;
     }
 
     private void Update()
     {
+        if (Time.timeScale == 0)
+            return;
         CharacterMove();
     }
 
