@@ -10,8 +10,6 @@ public class Coin : MonoBehaviour
     [SerializeField] private Vector3 rotationVector;
     [SerializeField] private float verticalAmplitude;
     [SerializeField] private float verticalSpeed;
-    
-    //[SerializeField] private AudioClip audioClip;
 
     private void Update()
     {
@@ -23,11 +21,10 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
-        //if (!(audioClip is null || TryGetComponent(out AudioSource audioSource)))
-            //audioSource.PlayOneShot(audioClip);
-            
+        if (!other.TryGetComponent(out Player player)) return;
+        
         CoinsSystem.AddCoin(denomination);
         Destroy(gameObject);
+        player.TakenCoinsCount++;
     }
 }

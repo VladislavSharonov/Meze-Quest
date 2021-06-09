@@ -25,7 +25,7 @@ public class DoorOpenZone : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player));
         {
-            if (player.IsKeyTook)
+            if (player.IsKeyTaken)
                 openHint.SetActive(true);
             else
                 openIsNotAvailableHint.SetActive(true);
@@ -42,7 +42,7 @@ public class DoorOpenZone : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (!other.TryGetComponent(out Player player)) return;
-        if (!player.IsKeyTook || !Input.GetKeyDown(KeyCode.E)) return;
+        if (!player.IsKeyTaken || !Input.GetKeyDown(KeyCode.E)) return;
         openHint.SetActive(false);
         Destroy(gameObject);
         Destroy(door);

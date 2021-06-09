@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2121133598009991728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 44, y: 44, z: 44}
+  m_LocalScale: {x: 48, y: 48, z: 48}
   m_Children:
   - {fileID: 2391968028955443519}
   - {fileID: 8581269691293371623}
@@ -117,11 +117,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: {fileID: 4073147791433234170}
-  speed: 2
-  acceleration: 3
-  deceleration: 5
+  speed: 50
+  acceleration: {x: 50, y: 50}
+  deceleration: {x: 1, y: 1}
   camera: {fileID: 5725511649970508494}
   loseWindow: {fileID: 5302104695027385941}
+  startSpeed: 2
 --- !u!1 &2274097827398984873
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +246,7 @@ Transform:
   - {fileID: 5302104695027385940}
   - {fileID: 4073147791433234171}
   - {fileID: 1595425905524111498}
+  - {fileID: 8923886747499329143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -274,13 +276,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5805877200199656630}
-  m_LocalRotation: {x: 0.17670354, y: -0.8194912, z: 0.42660013, w: 0.33944437}
-  m_LocalPosition: {x: 0.04, y: 0.08, z: 0.04}
+  m_LocalRotation: {x: 0.38977632, y: -0.6861795, z: 0.347368, w: 0.5065251}
+  m_LocalPosition: {x: 0.0422, y: 0.0978, z: 0.027299996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1595425905524111498}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 55, y: -135, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.642, y: -120.055, z: -21.919}
 --- !u!20 &5725511649970508494
 Camera:
   m_ObjectHideFlags: 0
@@ -364,6 +366,49 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &8142411370889223293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8923886747499329143}
+  - component: {fileID: 4177672515672813626}
+  m_Layer: 0
+  m_Name: SceneNavigator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8923886747499329143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8142411370889223293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.787351, y: -0.683264, z: 10.235251}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8980871713222859131}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4177672515672813626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8142411370889223293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4bccbb7a9dafc41918171b87e2f45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8746764715702923317
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +600,18 @@ PrefabInstance:
     - target: {fileID: 8668718350009793629, guid: 27f62d77072e04d44bbaca538ee70e1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668718350594755451, guid: 27f62d77072e04d44bbaca538ee70e1f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4177672515672813626}
+    - target: {fileID: 8668718350594755451, guid: 27f62d77072e04d44bbaca538ee70e1f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668718350594755451, guid: 27f62d77072e04d44bbaca538ee70e1f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneNavigator, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27f62d77072e04d44bbaca538ee70e1f, type: 3}

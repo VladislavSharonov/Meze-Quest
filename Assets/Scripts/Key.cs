@@ -10,6 +10,6 @@ public class Key : MonoBehaviour
     {
         if (!other.transform.TryGetComponent(out Player player)) return;
         Destroy(gameObject);
-        player.IsKeyTook = true;
+        player.IsKeyTaken = true;
     }
 }

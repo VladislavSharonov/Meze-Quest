@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Image = UnityEngine.UI.Image;
 
 public class LevelGenerator : MonoBehaviour
 {
+    [SerializeField] private Image mapPreview = null;
+    
     [SerializeField] private GameObject character;
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject trap;
@@ -12,28 +14,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject checkpoint;
     [SerializeField] private GameObject key;
     [SerializeField] private GameObject door;
-    
-    private string[] Lvl =
-    {
-        "-------!---------",
-        "#######-#########",
-        "#-----#---------#",
-        "#####-#-#########",
-        "#-------#---#--[#",
-        "#-###-###-#-#-###",
-        "#---#-#--&#-#---#",
-        "###-#-#-###-#-#-#",
-        "#---#^#---#---#-#",
-        "#-###-###-#####-#",
-        "#---#---#-#$--#-#",
-        "###-#-#-#-###-#-#",
-        "#-#-#-#-#---#-#-#",
-        "#-#-###-###-#-#-#",
-        "#-#---------]-#-#",
-        "#-###-#########-#",
-        "#-------#*------#",
-        "#################",
-    };
+
+    public static string[] Map { get; set; }
+    public static Sprite MapPreview { get; set; }
 
     private Dictionary<char, GameObject> legend = new Dictionary<char, GameObject>();
 
@@ -48,6 +31,7 @@ public class LevelGenerator : MonoBehaviour
         legend['['] = key;
         legend[']'] = door;
         legend['&'] = checkpoint;
+        mapPreview.sprite = MapPreview;
     }
 
     // Start is called before the first frame update
@@ -56,7 +40,7 @@ public class LevelGenerator : MonoBehaviour
         MakeLegend();
         
         var i = 0;
-        foreach (var row in Lvl)
+        foreach (var row in Map)
         {
             var j = 0;
             foreach (var c in row)

@@ -10,16 +10,20 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Lives lives;
     [SerializeField] private float speed = 3;
-    [SerializeField] private float acceleration = 0.2f;
-    [SerializeField] private float deceleration = 5f;
+    [SerializeField] private Vector2 acceleration = new Vector2(.2f, .2f);
+    [SerializeField] private Vector2 deceleration = new Vector2(1f, 1f);
     [SerializeField] private new Camera camera;
     [SerializeField] private GameObject loseWindow;
+    [SerializeField] private float startSpeed = 1f;
     
-    private Vector3 _statrtPosition;
-    private Vector3 _moveDirection;
-    private CharacterController _characterController;
+    private Vector3 statrtPosition;
+    //private Vector3 moveDirection;
+    private CharacterController characterController;
+    private Vector2 currentSpeed = Vector2.one;
 
-    public bool IsKeyTook
+    public int TakenCoinsCount { get; set; }
+    
+    public bool IsKeyTaken
     {
         get;
         set;
@@ -40,7 +44,7 @@ public class Player : MonoBehaviour
             //var position = Checkpoint.Current.Value;
             var oldGameObject = gameObject;
             Instantiate(gameObject, 
-                        new Vector3(_statrtPosition.x, _statrtPosition.y, _statrtPosition.z), 
+                        new Vector3(statrtPosition.x, statrtPosition.y, statrtPosition.z), 
                         transform.rotation);
             gameObject.name = oldGameObject.name;
             Destroy(oldGameObject);
@@ -49,13 +53,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _statrtPosition = gameObject.transform.position;
-        _characterController = GetComponent<CharacterController>();
-        if (_characterController is null)
+        statrtPosition = gameObject.transform.position;
+        characterController = GetComponent<CharacterController>();
+        if (characterController is null)
             Debug.LogException(new Exception("GameObject has no CharacterController"));
         if (camera is null)
             Debug.LogWarning(new Exception("Camera is not set"));
-        camera?.transform.LookAt(_characterController.transform.position);
+        camera?.transform.LookAt(characterController.transform.position);
     }
 
     private void Update()
@@ -67,27 +71,33 @@ public class Player : MonoBehaviour
 
     private void CharacterMove()
     {
-        var moveVector = Vector3.zero;
-        moveVector.x = -Input.GetAxis("Horizontal");
-        moveVector.z = -Input.GetAxis("Vertical");
-        moveVector.Normalize();
-        if (IsDifferentDirection(_moveDirection.x, moveVector.x))
-            _moveDirection.x = 0f;
-        if (IsDifferentDirection(_moveDirection.z, moveVector.z))
-            _moveDirection.z = 0f;
-
-        if (moveVector != Vector3.zero)
-        {
-            _moveDirection = Vector3.Lerp(_moveDirection,
-                                          moveVector,
-                                          Time.deltaTime * Time.deltaTime * acceleration);
-        }
+        var moveDirection = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
+        /*if (moveDirection.x > moveDirection.z)
+            moveDirection.z = 0f;
         else
-            _moveDirection = Vector3.Lerp(_moveDirection, Vector3.zero, Time.deltaTime * deceleration);
+            moveDirection.x = 0f;*/
         
-        if (_characterController.Move(_moveDirection * speed) == CollisionFlags.Sides)
-            _moveDirection = Vector3.zero;
+        /*currentSpeed.x = ComputeCurrentSpeed(currentSpeed.x, acceleration.x, moveDirection.x != 0f);
+        currentSpeed.y = ComputeCurrentSpeed(currentSpeed.y, acceleration.y, moveDirection.z != 0f);
+        
+        moveDirection.x *= currentSpeed.x * currentSpeed.x;
+        moveDirection.z *= currentSpeed.y * currentSpeed.y;*/
+        currentSpeed.x = ComputeCurrentSpeed(currentSpeed.x, acceleration.x, moveDirection.x != 0f);
+        currentSpeed.y = ComputeCurrentSpeed(currentSpeed.y, acceleration.y, moveDirection.z != 0f);
+        moveDirection.x *= (float)Math.Sqrt(currentSpeed.x);
+        moveDirection.z *= (float)Math.Sqrt(currentSpeed.y);
+
+        characterController.SimpleMove(moveDirection);
     }
 
-    private static bool IsDifferentDirection(float a, float b) => b < 0 ^ a < 0 && a != 0 && b != 0;
+    private float ComputeCurrentSpeed(float currentSpeed, float acceleration, bool isMoveByThisAxis)
+    {
+        currentSpeed = isMoveByThisAxis ? currentSpeed + Time.deltaTime * acceleration : 0f;
+        if (currentSpeed > speed)
+            currentSpeed = speed;
+
+        return currentSpeed;
+    }
+    
+    // private static bool IsDifferentDirection(float a, float b) => b < 0 ^ a < 0 && a != 0 && b != 0;
 }
