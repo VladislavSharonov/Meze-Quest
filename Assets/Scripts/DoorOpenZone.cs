@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class DoorOpenZone : MonoBehaviour
 {
@@ -14,11 +10,13 @@ public class DoorOpenZone : MonoBehaviour
     {
         if (openHint is null)
             Debug.LogException(new Exception("Open hint wasn't set"));
+        else
+            openHint.SetActive(false);
+        
         if (openIsNotAvailableHint is null)
             Debug.LogException(new Exception("Open isn't available hint wasn't set"));
-        
-        openHint.SetActive(false);
-        openIsNotAvailableHint.SetActive(false);
+        else
+            openIsNotAvailableHint.SetActive(false);
     }
     
     private void OnTriggerEnter(Collider other)

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public static bool IsOpen = false;
+    private static bool isOpen;
     public GameObject window;
 
     private void Start()
@@ -11,17 +11,18 @@ public class MainMenu : MonoBehaviour
         window.SetActive(false);
     }
 
-    public void Close()
+    private void Close()
     {
         window.SetActive(false);
-        IsOpen = false;
+        isOpen = false;
     }
     
-    public void Open()
+    private void Open()
     {
         window.SetActive(true);
-        IsOpen = true;
+        isOpen = true;
     }
+    
     public void PlayGame()
     {
         SceneManager.LoadScene("Game");
@@ -32,14 +33,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (IsOpen)
-                QuitGame();
-            else
-                Open();
-        }
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+        
+        if (isOpen)
+            QuitGame();
+        else
+            Open();
     }
 }

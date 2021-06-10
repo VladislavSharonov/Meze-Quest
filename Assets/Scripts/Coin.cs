@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
     [SerializeField] private long denomination = 1;
     [SerializeField] private float rotationSpeed = 1f;
-    [SerializeField] private Vector3 rotationVector;
+    [SerializeField] private Vector3 rotationVector = Vector3.zero;
     [SerializeField] private float verticalAmplitude;
     [SerializeField] private float verticalSpeed;
 
@@ -23,8 +20,7 @@ public class Coin : MonoBehaviour
     {
         if (!other.TryGetComponent(out Player player)) return;
         
-        CoinsSystem.AddCoin(denomination);
         Destroy(gameObject);
-        player.TakenCoinsCount++;
+        player.TakenCoinsCount += (int)denomination;
     }
 }

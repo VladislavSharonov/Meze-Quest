@@ -6,4 +6,9 @@ public class WinWindow : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void Update()
+    {
+        Cursor.visible = true;
+    }
 }

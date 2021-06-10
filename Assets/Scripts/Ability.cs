@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI lable = null;
+    [SerializeField] private TextMeshProUGUI label = null;
+
+    private const int Cost = 3;
+    private int lastCoinBalance = 0;
     
-    const int Cost = 3;
     
     public void TryBuy()
     {
@@ -17,7 +16,18 @@ public class Ability : MonoBehaviour
         
         CoinsSystem.WastCoins(Cost);
         Abilities.ShowMapCount++;
-        if (lable != null)
-            lable.text = $"x{Abilities.ShowMapCount}";
+        if (label != null)
+            label.text = $"x{Abilities.ShowMapCount}";
+    }
+
+    private void Update()
+    {
+        if (label is null)
+            return;
+        else if (lastCoinBalance != Abilities.ShowMapCount)
+        {
+            lastCoinBalance = Abilities.ShowMapCount;
+            label.text = $"x{lastCoinBalance}";
+        }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class  Maps
+public static class Maps
 {
     public static string[] GetByNumber(int i)
     {
@@ -11,7 +11,8 @@ public class  Maps
         Debug.LogException(new Exception($"There is no map by number {i}"));
         return new [] {"###", "#*#", "###"};
     }
-    private static List<string[]> maps = new List<string[]>();
+    
+    private static readonly List<string[]> maps = new List<string[]>();
     
     static Maps()
     {

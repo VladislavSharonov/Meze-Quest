@@ -1,16 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class CoinCountLable : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI lable = null;
-    void Start()
+    private void Start()
     {
         if (lable is null)
+        {            
             Debug.LogAssertion("Lable is null");
-        return;
+            return;
+        }
+
+        lable.text = CoinsSystem.Balance.ToString();
+    }
+    
+    private void Update()
+    {
         lable.text = CoinsSystem.Balance.ToString();
     }
 }

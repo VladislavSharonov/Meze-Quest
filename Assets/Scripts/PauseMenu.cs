@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
         window.SetActive(true);
         Time.timeScale = 0f;
         IsInPauseMenu = true;
+        Cursor.visible = true;
     }
 
     public void Resume()
@@ -24,6 +25,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         IsInPauseMenu = false;
         window.SetActive(false);
+        Cursor.visible = false;
     }
 
     public void ToMenu()
@@ -34,12 +36,11 @@ public class PauseMenu : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-		{
-            if (IsInPauseMenu)
-                Resume();
-            else
-                Pause();
-		}
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+        
+        if (IsInPauseMenu)
+            Resume();
+        else
+            Pause();
     }
 }
