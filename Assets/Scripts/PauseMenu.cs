@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
         window.SetActive(false);
     }
 
-    public void Pause()
+    private void Pause()
     {
         window.SetActive(true);
         Time.timeScale = 0f;
@@ -34,9 +34,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
     
-    void Update()
+    private void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+        if (!Input.GetKeyDown(KeyCode.Escape) || Time.timeScale < 1e-6) return;
         
         if (IsInPauseMenu)
             Resume();
