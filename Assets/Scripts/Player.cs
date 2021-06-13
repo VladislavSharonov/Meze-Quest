@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Lives lives;
     [SerializeField] private float speed = 3;
     [SerializeField] private Vector2 acceleration = new Vector2(.2f, .2f);
-    //[SerializeField] private Vector2 deceleration = new Vector2(1f, 1f);
     [SerializeField] private GameObject loseWindow;
     [SerializeField] private Camera playerCamera;
     
@@ -38,6 +37,12 @@ public class Player : MonoBehaviour
                         new Vector3(startPosition.x, startPosition.y, startPosition.z), 
                         transform.rotation);
             gameObject.name = oldGameObject.name;
+            if (gameObject.TryGetComponent(out Player player))
+            {
+                player.IsKeyTaken = IsKeyTaken;
+                player.TakenCoinsCount = TakenCoinsCount;
+            }
+
             Destroy(oldGameObject);
         }
     }
