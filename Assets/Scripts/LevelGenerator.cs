@@ -14,6 +14,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject checkpoint;
     [SerializeField] private GameObject key;
     [SerializeField] private GameObject door;
+    [SerializeField] private GameObject finishLine;
 
     public static string[] Map { get; set; }
     public static Sprite MapPreview { get; set; }
@@ -31,6 +32,7 @@ public class LevelGenerator : MonoBehaviour
         legend['['] = key;
         legend[']'] = door;
         legend['&'] = checkpoint;
+        legend['~'] = finishLine;
         mapPreview.sprite = MapPreview;
     }
 

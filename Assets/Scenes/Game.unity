@@ -204,6 +204,7 @@ MonoBehaviour:
   checkpoint: {fileID: 7484059536174095308, guid: 8df99a2f36fa524428b7d31696060e2e, type: 3}
   key: {fileID: 1250824184765052460, guid: dd1e4ebc5bd76144baf4240c44b85e46, type: 3}
   door: {fileID: 8275677120533650772, guid: a9b3e9b73a678c34db6ecacd1d758ac0, type: 3}
+  finishLine: {fileID: 2139805900680566916, guid: 54c7b50be65ef50419c8b9796767a351, type: 3}
 --- !u!4 &431484242
 Transform:
   m_ObjectHideFlags: 0
