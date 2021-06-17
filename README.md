@@ -21,6 +21,10 @@ Dodonova Elena Igorevna *(Додонова Елена Игоревна)*
 
 Dyachenko Maxim Alexandrovich *(Дьяченко Максим Александрович)* 
 ___
+![](<Docs/Screenshots/Screenshot1.jpg>)
+
+![](<Docs/Screenshots/Screenshot2.jpg>)
+
 ### **System format:**
 Desktop application
 
