@@ -13,7 +13,7 @@ Andriyanov Nikita Dmitrievich *(Андриянов Никита Дмитриев
 
 Bobrov Kirill Mikhailovich *(Бобров Кирилл Михайлович)* 
 
-**Artist**
+**Artist:**
 
 Dodonova Elena Igorevna *(Додонова Елена Игоревна)* 
 
@@ -21,8 +21,8 @@ Dodonova Elena Igorevna *(Додонова Елена Игоревна)*
 
 Dyachenko Maxim Alexandrovich *(Дьяченко Максим Александрович)* 
 ___
-![](<Docs/Screenshots/Screenshot1.jpg>)
-
+### **Screenshots:**
+![](<Docs/Screenshots/Screenshot1.jpg>) 
 ![](<Docs/Screenshots/Screenshot2.jpg>)
 
 ### **System format:**
